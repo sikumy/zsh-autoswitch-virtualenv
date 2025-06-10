@@ -354,6 +354,15 @@ function mkvenv()
             _maybeworkon "$(_virtual_env_dir "$venv_name")" "virtualenv"
 
             install_requirements
+
+            local tool_name="$(basename $PWD | tr '[:upper:]' '[:lower:]')"
+            local venv_bin="$(_virtual_env_dir "$venv_name")/bin"
+            if [[ -x "${venv_bin}/${tool_name}" ]]; then
+                local link_name="run-${tool_name}"
+                ln -sf "${venv_bin}/${tool_name}" "./${link_name}"
+                printf "${AUTOSWITCH_PURPLE}Symlink ./%s → %s created${NONE}\n" \
+                "$link_name" "${venv_bin}/${tool_name}"
+            fi
         fi
     fi
 }
