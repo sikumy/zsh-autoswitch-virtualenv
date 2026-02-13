@@ -1,6 +1,23 @@
 Changelog
 =========
 
+3.9.0
+-----
+* Prioritize local .venv directory over parent (#220) thanks @Skesov
+
+3.8.2
+-----
+* Fix uv virutal environments deactivting in subdirectories (#217)
+
+3.8.1
+-----
+* stop "setopt nullglob" from leaking into user's shell (#207) thanks @alinsavix!
+
+3.8.0
+-----
+* Better support for uv projects
+* minor tweaks to default autoswitch message template
+
 3.7.1
 -----
 * only check python on precmd. Fixes issues with plugins like pyenv that load in PATH later to work correctly (#175)

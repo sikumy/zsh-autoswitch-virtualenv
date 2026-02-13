@@ -5,20 +5,28 @@ test: &test
   steps:
     - checkout
     - run:
+        name: setup tzdata
+        command: |
+          export DEBIIAN_FRONTEND=noninteractive
+          export TZ=Etc/UTC
+          ln -fs /usr/share/zoneinfo/$TZ /etc/localtime
+          echo $TZ > /etc/timezone
+    - run:
         name: Install Dependencies
         command: >
           apt-get update &&
           apt-get install -y
+          zsh
+          pipx
           python3-pip
-          python
-          python-virtualenv
+          python3-virtualenv
           curl
           ncurses-bin
           git
           pwgen
     - run:
         name: install pipenv
-        command: pip3 install pipenv
+        command: pipx install pipenv
     - run:
         name: Download Zunit
         command: |
@@ -40,7 +48,7 @@ test: &test
 jobs:
   lint:
     docker:
-      - image: "python:3.7-stretch"
+      - image: "python:3.14"
     steps:
       - checkout
       - run:
@@ -49,44 +57,9 @@ jobs:
             pip install restructuredtext_lint
             rst-lint *.rst
 
-  test-zsh-5.1:
+  test-zsh:
       docker:
-        - image: "zshusers/zsh:5.1.1"
-      <<: *test
-
-  test-zsh-5.2:
-      docker:
-        - image: "zshusers/zsh:5.2"
-      <<: *test
-
-  test-zsh-5.3:
-      docker:
-        - image: "zshusers/zsh:5.3.1"
-      <<: *test
-
-  test-zsh-5.4:
-      docker:
-        - image: "zshusers/zsh:5.4.2"
-      <<: *test
-
-  test-zsh-5.5:
-      docker:
-        - image: "zshusers/zsh:5.5.1"
-      <<: *test
-
-  test-zsh-5.6:
-      docker:
-        - image: "zshusers/zsh:5.6.2"
-      <<: *test
-
-  test-zsh-5.7:
-      docker:
-        - image: "zshusers/zsh:5.7.1"
-      <<: *test
-
-  test-zsh-5.8:
-      docker:
-        - image: "zshusers/zsh:5.8"
+        - image: "ubuntu:latest"
       <<: *test
 
 workflows:
@@ -94,11 +67,4 @@ workflows:
   test:
     jobs:
       - lint
-      - test-zsh-5.1
-      - test-zsh-5.2
-      - test-zsh-5.3
-      - test-zsh-5.4
-      - test-zsh-5.5
-      - test-zsh-5.6
-      - test-zsh-5.7
-      - test-zsh-5.8
+      - test-zsh

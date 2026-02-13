@@ -6,13 +6,13 @@ Autoswitch Python Virtualenv
 *zsh-autoswitch-virtualenv* is a simple and quick ZSH plugin that switches python
 virtualenvs automatically as you move between directories.
 
-*zsh-autoswitch-virtualenv* also automatically detects and activates your **Pipenv** and **Poetry** projects
+*zsh-autoswitch-virtualenv* also automatically detects and activates your **UV**, **Poetry** and **Pipenv** projects
 without any setup necessary.
 
 * `How it Works`_
 * `More Details`_
 * Installing_
-* `Pipenv and Poetry Integration`_
+* `Uv, Poetry and Pipenv Integration`_
 * Commands_
 * `Customising Messages`_
 * Options_
@@ -126,11 +126,11 @@ Source the plugin shell script in your `~/.zshrc` profile. For example
    source $HOME/zsh-autoswitch-virtualenv/autoswitch_virtualenv.plugin.zsh
 
 
-Pipenv and Poetry Integration
------------------------------
+Uv, Poetry and Pipenv Integration
+---------------------------------
 
-This plugin will also detect and auto activate virtualenvs made with ``pipenv`` or ``poetry``.
-No action needs to be performed in projects where a poetry/pipenv project has already been setup.
+This plugin will also detect and auto activate virtualenvs made with ``uv``, ``poetry`` or ``pipenv``.
+No action needs to be performed in projects where a uv/poetry/pipenv project has already been setup.
 
 Commands
 --------
@@ -368,15 +368,13 @@ NOTE: It is required that you use a minimum zunit version of 0.8.2
 
 .. _zinit: https://github.com/zdharma-continuum/zinit
 
-.. _Fig: https://fig.io
-
 .. _oh-my-zsh: https://github.com/robbyrussell/oh-my-zsh
 
 .. |CircleCI| image:: https://circleci.com/gh/MichaelAquilina/zsh-autoswitch-virtualenv.svg?style=svg
    :target: https://circleci.com/gh/MichaelAquilina/zsh-autoswitch-virtualenv
 
-.. |Release| image:: https://badge.fury.io/gh/MichaelAquilina%2Fzsh-autoswitch-virtualenv.svg
-   :target: https://badge.fury.io/gh/MichaelAquilina%2Fzsh-autoswitch-virtualenv
+.. |Release| image:: https://badge.fury.io/gh/MichaelAquilina%2Fzsh-autoswitch-virtualenv.svg?icon=si%3Agithub
+   :target: https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv/tags
 
 .. |ASCIICAST| image:: https://asciinema.org/a/ciDroIzqcC14VEeXMkqdRbvXf.svg
    :target: https://asciinema.org/a/ciDroIzqcC14VEeXMkqdRbvXf
